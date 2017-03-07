@@ -45,6 +45,35 @@ outtextxy(10,470,"Press any key....");
 rectangle(rx1,ry1,rx2,ry2);
 for(i=0;i<j-1;i++)
 line(x1[i],y1[i],x1[i+1],y1[i+1]);
+printf("no. of sides for polygon : ");
+scanf("%d",&n);
+printf("coordinates : ");
+for(i=0;i<n;i++)
+{
+scanf("%f%f",&x[i],&y[i]);
+}
+outtextxy(10,10,"Before clipping");
+outtextxy(10,470,"Press any key....");
+rectangle(rx1,ry1,rx2,ry2);
+for(i=0;i<n-1;i++)
+line(x[i],y[i],x[i+1],y[i+1]);
+line(x[i],y[i],x[0],y[0]);
+getch();
+for(i=0;i<n-1;i++)
+{
+m=(y[i+1]-y[i])/(x[i+1]-x[i]);
+clip(x[i],y[i],m);
+clip(x[i+1],y[i+1],m);
+}
+m=(y[i]-y[0])/(x[i]-x[0]);
+clip(x[i],y[i],m);
+clip(x[0],y[0],m);
+outtextxy(10,10,"After clipping");
+outtextxy(10,470,"Press any key....");
+rectangle(rx1,ry1,rx2,ry2);
+for(i=0;i<j-1;i++)
+line(x1[i],y1[i],x1[i+1],y1[i+1]);
+
 getch();
 }
 
