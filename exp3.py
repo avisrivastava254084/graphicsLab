@@ -1,13 +1,4 @@
 def cohensutherland(left, top, right, bottom, x1, y1, x2, y2):
-    """Clips a line to a rectangular area.
-    This implements the Cohen-Sutherland line clipping algorithm.  left,
-    top, right and bottom denote the clipping area, into which the line
-    defined by x1, y1 (start point) and x2, y2 (end point) will be
-    clipped.
-    If the line does not intersect with the rectangular clipping area,
-    four None values will be returned as tuple. Otherwise a tuple of the
-    clipped line points will be returned in the form (cx1, cy1, cx2, cy2).
-    """
     LEFT, RIGHT, LOWER, UPPER = 1, 2, 4, 8
 
     def _getclip(xa, ya):
@@ -41,30 +32,18 @@ def cohensutherland(left, top, right, bottom, x1, y1, x2, y2):
             y = y1 + (y2 - y1) * (1.0 * (left - x1)) / (x2 - x1)
             x = left
         else:
-            # this should not happen
             raise RuntimeError("invalid clipping state")
 
         if opt == k1:
-            # x1, y1 = int(x), int(y)
             x1, y1 = x, y
             k1 = _getclip(x1, y1)
         else:
-            # x2, y2 = int(x), int(y)
             x2, y2 = x, y
             k2 = _getclip(x2, y2)
     return x1, y1, x2, y2
 
 
 def liangbarsky(left, top, right, bottom, x1, y1, x2, y2):
-    """Clips a line to a rectangular area.
-    This implements the Liang-Barsky line clipping algorithm.  left,
-    top, right and bottom denote the clipping area, into which the line
-    defined by x1, y1 (start point) and x2, y2 (end point) will be
-    clipped.
-    If the line does not intersect with the rectangular clipping area,
-    four None values will be returned as tuple. Otherwise a tuple of the
-    clipped line points will be returned in the form (cx1, cy1, cx2, cy2).
-    """
     dx = x2 - x1 * 1.0
     dy = y2 - y1 * 1.0
     dt0, dt1 = 0.0, 1.0
