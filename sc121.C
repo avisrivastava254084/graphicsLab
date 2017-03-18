@@ -18,6 +18,8 @@ void main()
             setcolor(1);
             printf("X[%d]:  Y[%d]:",i,i);
             scanf("%d  %d",&x[i],&y[i]);
+            printf("X[%d]:  Y[%d]:",i+1,i+1);    
+            scanf("%d  %d",&x[i+1],&y[i+1]);
             line(x[i],y[i],x[i+1],y[i+1]);
             getch();
             }
